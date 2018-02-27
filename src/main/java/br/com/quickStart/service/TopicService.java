@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import br.com.quickStart.entities.Topic;
+import br.com.quickStart.exception.TopicException;
 
 @Service
 public class TopicService {
@@ -26,8 +27,12 @@ public class TopicService {
 	private Topic TopicBydId(String id) {
 		
 		logger.info("buscar topic pela id: " + id);
-		return topics.stream().filter(t -> 
-					t.getId().equals(id)).findFirst().get();
+		try {
+			return topics.stream().filter(t -> 
+			t.getId().equals(id)).findFirst().get();	
+		} catch (Exception e) {
+			throw new TopicException("Não existe o id informado: " + id);
+		}
 	}
 	public Topic getTopic(String id) {
 		return TopicBydId(id);
