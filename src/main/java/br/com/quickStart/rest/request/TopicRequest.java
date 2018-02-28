@@ -5,6 +5,7 @@ public class TopicRequest {
 	private String id;
 	private String nome;
 	private String description;
+	private String categoria;
 	
 	public String getId() {
 		return id;
@@ -23,6 +24,12 @@ public class TopicRequest {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	
 }

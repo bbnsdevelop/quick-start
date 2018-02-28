@@ -6,17 +6,19 @@ public class Topic {
 	private String id;
 	private String nome;
 	private String description;
+	private String categoria;
 	
 	
 	public Topic() {
 	
 	}
 	
-	public Topic(String id, String nome, String description) {
+	public Topic(String id, String nome, String description, String categoria) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.description = description;
+		this.categoria = categoria;
 	}
 	
 	public String getId() {
@@ -36,6 +38,14 @@ public class Topic {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	
 	

@@ -26,15 +26,30 @@ public class TopicController {
 		
 		return topicService.getAll();
 	}
-	
+
 	@RequestMapping("/topics/{id}")
 	public Topic getTopic(@PathVariable("id") String id) {
 		return topicService.getTopic(id);
 	}
+	@RequestMapping("/topics/category/{categoria}")
+	public List<Topic> getTopicByCategory(@PathVariable("categoria") String categoria) {
+		return topicService.getCategory(categoria);
+	}
 	
-	// aula 19 minuto 4:13 atualizado em casa
 	@RequestMapping(value = "/topics", method = RequestMethod.POST)
 	public ResponseEntity<?> addTopic(@RequestBody TopicRequest topic){
+		topicService.addTopic(topic);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+	
+	@RequestMapping(value = "/topics/{id}",  method = RequestMethod.PUT)
+	public Topic upDateTopic(@PathVariable("id") String id, @RequestBody TopicRequest topicUpDate) {
+		
+		return topicService.upDateTopic(topicUpDate, id);
+	}
+	@RequestMapping(value = "/topics/{id}",  method = RequestMethod.DELETE)
+	public void deleteTopic(@PathVariable("id") String id) {
+		
+		topicService.delete(id);
 	}
 }
