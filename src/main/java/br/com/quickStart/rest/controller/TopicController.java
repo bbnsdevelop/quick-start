@@ -32,7 +32,7 @@ public class TopicController {
 		return topicService.getTopic(id);
 	}
 	
-	// aula 19 minuto 4:13
+	// aula 19 minuto 4:13 atualizado em casa
 	@RequestMapping(value = "/topics", method = RequestMethod.POST)
 	public ResponseEntity<?> addTopic(@RequestBody TopicRequest topic){
 		return ResponseEntity.status(HttpStatus.CREATED).build();
