@@ -32,18 +32,19 @@ public class TopicService {
 	}
 	private List<Topic> getByCategory(String categoria){
 		List<Topic> topicList =  new ArrayList<>();
-		if(!isNull(categoria)) {			   
-			topics.stream().filter(t -> t.getCategoria().equals(categoria)).forEach(t ->{
-				Topic topic = new Topic();
-				topic.setId(t.getId());
-				topic.setNome(t.getNome());
-				topic.setDescription(t.getDescription());
-				topicList.add(topic);
-			});
-		}
-		else {
-			throw new TopicException("Houve um problema ao carregar a categoria: "+ categoria);
-		}
+		try {
+			if(!isNull(categoria)) {			   
+				topics.stream().filter(t -> t.getCategoria().equals(categoria)).forEach(t ->{
+					Topic topic = new Topic(t.getId(), t.getNome(), t.getDescription(), t.getCategoria());
+					topicList.add(topic);
+				});
+			}
+			if(topicList.isEmpty()) {
+				throw new TopicException("Houve um problema ao carregar a categoria: "+ categoria);
+			}
+		} catch (TopicException e) {
+			logger.error(e.getMessage());
+		}		
 		
 		return topicList;
 		
