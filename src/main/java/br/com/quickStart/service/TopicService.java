@@ -86,12 +86,17 @@ public class TopicService {
 		return topics;
 	}
 	public Topic getTopic(String id) {
-		Topic topicById = TopicBydId(id);
-		if(topicById != null) {
-			return topicById;
-		}else {
-			return null;
+		try {
+			Topic topicById = TopicBydId(id);
+			if(topicById != null) {
+				return topicById;
+			}else {
+				throw new TopicException("Erro ao buscar topic com id: " + id);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
+		return null;
 		
 	}
 	public void addTopic(TopicRequest topicRequeste) {
